@@ -1,3 +1,4 @@
+import 'package:book/core/utils/assets.dart';
 import 'package:book/features/home/presentation/views/widgets/iteme_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class CarousesliderImage extends StatelessWidget {
         itemCount: 5,
 
         itemBuilder: (context, index, realIndex) {
-          return ItemeImage();
+          return ItemeImage(image: AssetsData.testImage);
         },
       ),
     );

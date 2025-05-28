@@ -8,4 +8,14 @@ abstract class Styles {
     fontWeight: FontWeight.w600,
     color: kwhitecolor, // kprimarycolor
   );
+  static const TextStyle numberStyle = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: kwhitecolor, // kprimarycolor
+  );
+  static const TextStyle smallcontent = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: Colors.grey,
+  );
 }
