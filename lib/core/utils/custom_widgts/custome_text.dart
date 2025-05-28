@@ -5,7 +5,7 @@ class CustomeText extends StatelessWidget {
   const CustomeText({
     super.key,
     required this.text,
-    this.textStyle = Styles.titleMedium,
+    this.textStyle = Styles.textStyle18,
   });
   final TextStyle textStyle;
   final String text;

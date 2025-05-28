@@ -17,7 +17,7 @@ class HomeViewBody extends StatelessWidget {
           CustomAbbpar(),
           CarousesliderImage(),
           SizedBox(height: 32),
-          Text("Best Seller", style: Styles.titleMedium),
+          Text("Best Seller", style: Styles.textStyle18),
           Expanded(
             child: ListView.separated(
               clipBehavior: Clip.antiAliasWithSaveLayer,

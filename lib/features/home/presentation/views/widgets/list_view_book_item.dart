@@ -16,26 +16,36 @@ class ListViewBookItem extends StatelessWidget {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
       child: Row(
         children: [
-          ItemeImage(image: AssetsData.testImage, aspectRatio: 2 / 4),
+          ItemeImage(image: AssetsData.testImage, aspectRatio: 2.5 / 4),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomeText(text: "the story name"),
+                CustomeText(
+                  text: "the story name",
+                  textStyle: Styles.textStyle20.copyWith(
+                    fontFamily: "GT-Sectra-Fine-Regular",
+                  ),
+                ),
                 CustomeText(
                   text: "F. Scott Fitzgerald",
-                  textStyle: Styles.smallcontent,
+                  textStyle: Styles.textStyle14,
                 ),
                 Row(
                   children: [
-                    Text("10.99 \$", style: Styles.numberStyle),
+                    Text(
+                      "10.99 \$",
+                      style: Styles.textStyle20.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     SizedBox(width: 64),
                     Icon(Icons.star_rate_rounded, color: kstarcolor, size: 24),
-                    Text("rate", style: Styles.titleMedium),
+                    Text("rate", style: Styles.textStyle16),
                     SizedBox(width: 8),
-                    Text("(rate)", style: Styles.smallcontent),
+                    Text("(rate)", style: Styles.textStyle14),
                   ],
                 ),
               ],
