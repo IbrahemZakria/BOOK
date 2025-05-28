@@ -8,7 +8,12 @@ class CustomAbbpar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 60.0),
+      padding: const EdgeInsets.only(
+        left: 32.0,
+        right: 32,
+        top: 60.0,
+        bottom: 32.0,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
