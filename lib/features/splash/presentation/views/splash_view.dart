@@ -1,29 +1,16 @@
-import 'package:book/core/utils/assets.dart';
+import 'package:book/features/splash/presentation/views/widges/splash_view_body.dart';
 import 'package:flutter/material.dart';
 
-class SplashView extends StatelessWidget {
+class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
   @override
+  State<SplashView> createState() => _SplashViewState();
+}
+
+class _SplashViewState extends State<SplashView> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(AssetsData.logo, width: 200, height: 200),
-            const SizedBox(height: 20),
-            const Text(
-              'Welcome to Book App',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+    return Scaffold(body: SplashViewBody());
   }
 }
