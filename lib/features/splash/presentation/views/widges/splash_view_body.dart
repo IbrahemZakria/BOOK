@@ -1,6 +1,9 @@
+import 'package:book/constant.dart';
 import 'package:book/core/utils/assets.dart';
+import 'package:book/features/home/presentation/views/home_views.dart';
 import 'package:book/features/splash/presentation/views/widges/animated_splash.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -14,19 +17,34 @@ late Animation<Offset> slideAnimation;
 
 class _SplashViewBodyState extends State<SplashViewBody>
     with SingleTickerProviderStateMixin {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+  void InitSlidingAnmation() {
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 2),
     );
     slideAnimation =
         Tween<Offset>(begin: const Offset(0, 100), end: Offset.zero).animate(
           CurvedAnimation(parent: animationController, curve: Curves.easeInOut),
         );
     animationController.forward();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    InitSlidingAnmation();
+    splashNavigation();
+  }
+
+  void splashNavigation() {
+    Future.delayed(const Duration(seconds: 3), () {
+      Get.to(
+        HomeViews(),
+        duration: kNavigateDuration,
+        transition: Transition.fade,
+      );
+    });
   }
 
   @override
