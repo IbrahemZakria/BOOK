@@ -1,7 +1,7 @@
 import 'package:book/core/utils/styels.dart';
+import 'package:book/features/home/presentation/views/widgets/best_seller_listview.dart';
 import 'package:book/features/home/presentation/views/widgets/carouseslider_image.dart';
-import 'package:book/features/home/presentation/views/widgets/custom_abbpar.dart';
-import 'package:book/features/home/presentation/views/widgets/list_view_book_item.dart';
+import 'package:book/features/home/presentation/views/widgets/custom_home_abbpar.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -9,25 +9,24 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CustomAbbpar(),
-          CarousesliderImage(),
-          SizedBox(height: 32),
-          Text("Best Seller", style: Styles.textStyle18),
-          Expanded(
-            child: ListView.separated(
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              itemBuilder: (context, index) => ListViewBookItem(),
-              separatorBuilder: (context, index) => SizedBox(height: 8),
-              itemCount: 10,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CustomHomeAbbpar(),
+        Expanded(
+          child: CustomScrollView(
+            physics: const BouncingScrollPhysics(),
+            slivers: [
+              SliverToBoxAdapter(child: CarousesliderImage()),
+              SliverToBoxAdapter(child: SizedBox(height: 32)),
+              SliverToBoxAdapter(
+                child: Text("Best Seller", style: Styles.textStyle18),
+              ),
+              BestSellerListview(),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -2,18 +2,13 @@ import 'package:book/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CustomAbbpar extends StatelessWidget {
-  const CustomAbbpar({super.key});
+class CustomHomeAbbpar extends StatelessWidget {
+  const CustomHomeAbbpar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 32.0,
-        right: 32,
-        top: 60.0,
-        bottom: 32.0,
-      ),
+      padding: const EdgeInsets.only(left: 32.0, right: 32),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
