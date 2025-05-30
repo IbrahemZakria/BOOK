@@ -1,7 +1,5 @@
 import 'package:book/constant.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 abstract class Styles {
   static const TextStyle textStyle18 = TextStyle(

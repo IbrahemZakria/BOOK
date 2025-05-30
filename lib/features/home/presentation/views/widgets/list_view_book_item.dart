@@ -43,25 +43,28 @@ class ListViewBookItem extends StatelessWidget {
                   textStyle: Styles.textStyle14,
                 ),
                 SizedBox(height: 3),
-                Row(
-                  children: [
-                    Text(
-                      "10.99 \$",
-                      style: Styles.textStyle20.copyWith(
-                        fontWeight: FontWeight.bold,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.52,
+                  child: Row(
+                    children: [
+                      Text(
+                        "10.99 \$",
+                        style: Styles.textStyle20.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 64),
-                    Icon(
-                      FontAwesomeIcons.solidStar,
-                      color: kstarcolor,
-                      size: 16,
-                    ),
-                    SizedBox(width: 6.3),
-                    Text("rate", style: Styles.textStyle16),
-                    SizedBox(width: 8),
-                    Text("(rate)", style: Styles.textStyle14),
-                  ],
+                      Spacer(),
+                      Icon(
+                        FontAwesomeIcons.solidStar,
+                        color: kstarcolor,
+                        size: 16,
+                      ),
+                      SizedBox(width: 6.3),
+                      Text("rate", style: Styles.textStyle16),
+                      SizedBox(width: 8),
+                      Text("(rate)", style: Styles.textStyle14),
+                    ],
+                  ),
                 ),
               ],
             ),

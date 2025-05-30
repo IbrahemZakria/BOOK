@@ -1,6 +1,6 @@
-import 'package:book/constant.dart';
+import 'package:book/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomBookAppbar extends StatelessWidget {
   const CustomBookAppbar({super.key});
@@ -9,11 +9,18 @@ class CustomBookAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        IconButton(onPressed: () {}, icon: const Icon(Icons.close)),
+        IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.close),
+        ),
         const Spacer(),
 
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            GoRouter.of(context).push(AppRouter.searchView);
+          },
           icon: const Icon(Icons.shopping_cart_outlined),
         ),
       ],

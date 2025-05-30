@@ -16,7 +16,7 @@ late Animation<Offset> slideAnimation;
 
 class _SplashViewBodyState extends State<SplashViewBody>
     with SingleTickerProviderStateMixin {
-  void InitSlidingAnmation() {
+  void initSlidinganmation() {
     animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -30,21 +30,20 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    InitSlidingAnmation();
+    initSlidinganmation();
     splashNavigation();
   }
 
   void splashNavigation() {
     Future.delayed(const Duration(seconds: 3), () {
-      context.go(AppRouter.homeviews);
+      // ignore: use_build_context_synchronously
+      GoRouter.of(context).push(AppRouter.homeviews);
     });
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     animationController.dispose();
     super.dispose();
   }
