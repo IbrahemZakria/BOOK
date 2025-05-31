@@ -1,7 +1,7 @@
 import 'package:book/constant.dart';
 import 'package:book/core/utils/app_router.dart';
 import 'package:book/core/utils/assets.dart';
-import 'package:book/core/utils/custom_widgts/custome_text.dart';
+import 'package:book/core/widgts/custome_text.dart';
 import 'package:book/core/utils/styels.dart';
 import 'package:book/features/home/presentation/views/widgets/iteme_image.dart';
 import 'package:flutter/material.dart';
