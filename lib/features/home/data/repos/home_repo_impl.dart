@@ -1,0 +1,37 @@
+import 'package:book/core/error/failures.dart';
+import 'package:book/core/utils/api_servises.dart';
+import 'package:book/features/home/data/models/home_book_model/home_book_model.dart';
+import 'package:book/features/home/data/repos/home_repo.dart';
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+
+class HomeRepoImpl implements HomeRepo {
+  ApiServises apiServises;
+  HomeRepoImpl({required this.apiServises});
+  @override
+  Future<Either<Failures, List<HomeBookModel>>> fetchBestSellerBooks() async {
+    try {
+      // Fetching best seller books from the API
+      final response = await apiServises.get(
+        'volumes?Filtering=free-ebooks&q=bestseller',
+      );
+      List<HomeBookModel> books = [];
+      for (var item in response['items']) {
+        books.add(HomeBookModel.fromJson(item));
+      }
+      return Right(books);
+    } catch (error) {
+      if (error is DioError) {
+        return Left(ServerError.fromDioError(error));
+      } else {
+        return left(ServerError(error.toString()));
+      }
+    }
+  }
+
+  @override
+  fetchFeaturedBooks() {
+    // TODO: implement fetchFeaturedBooks
+    throw UnimplementedError();
+  }
+}
