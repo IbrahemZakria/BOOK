@@ -1,5 +1,5 @@
 import 'package:book/core/error/failures.dart';
-import 'package:book/core/utils/api_servises.dart';
+import 'package:book/core/helper/services/api_servises.dart';
 import 'package:book/features/home/data/models/home_book_model/home_book_model.dart';
 import 'package:book/features/home/data/repos/home_repo.dart';
 import 'package:dartz/dartz.dart';
@@ -12,7 +12,7 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failures, List<HomeBookModel>>> fetchBestSellerBooks() async {
     try {
       // Fetching best seller books from the API
-      final response = await apiServises.get(
+      final response = await apiServises.getData(
         'volumes?Filtering=free-ebooks&q=bestseller',
       );
       List<HomeBookModel> books = [];
