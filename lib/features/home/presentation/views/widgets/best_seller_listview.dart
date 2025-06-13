@@ -10,31 +10,30 @@ class BestSellerListview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FeatureBooksCubit, FeatureBooksState>(
-      builder: (context, state) {
-        return SizedBox(
-          height: MediaQuery.of(context).size.height * 0.6,
-          child: Expanded(
-            child: ListView.separated(
+    return SizedBox(
+      height: MediaQuery.of(context).size.height,
+      child: BlocBuilder<FeatureBooksCubit, FeatureBooksState>(
+        builder: (context, state) {
+          if (state is FeatureBooksloading) {
+            return CustomLoadingindicator();
+          } else if (state is FeatureBookssuccess) {
+            return ListView.separated(
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: state.books.length,
               addAutomaticKeepAlives: true,
               addRepaintBoundaries: true,
               itemBuilder: (context, index) {
-                if (state is FeatureBooksloading) {
-                  return CustomLoadingindicator();
-                } else if (state is FeatureBookssuccess) {
-                  return ListViewBookItem(homeBookModel: state.books[index]);
-                } else if (state is FeatureBookserror) {
-                  return CustomErrorText(text: state.errorMessage);
-                } else {
-                  return CustomErrorText(text: "opps there is an error");
-                }
+                return ListViewBookItem(homeBookModel: state.books[index]);
               },
               separatorBuilder: (context, index) => SizedBox(height: 20),
-              itemCount: 10,
-            ),
-          ),
-        );
-      },
+            );
+          } else if (state is FeatureBookserror) {
+            return CustomErrorText(text: state.errorMessage);
+          } else {
+            return CustomErrorText(text: "opps there is an error");
+          }
+        },
+      ),
     );
   }
 }

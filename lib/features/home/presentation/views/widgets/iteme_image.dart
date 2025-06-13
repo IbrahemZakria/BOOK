@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ItemeImage extends StatelessWidget {
@@ -13,15 +14,17 @@ class ItemeImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 8.0),
-      child: AspectRatio(
-        aspectRatio: aspectRatio, // Adjust the aspect ratio as needed
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: NetworkImage(image), // Replace with your image path
-              fit: BoxFit.fill, // Adjust the fit as needed
-            ),
-            borderRadius: BorderRadius.circular(16),
+      child: ClipRRect(
+        borderRadius: BorderRadiusGeometry.circular(16),
+        child: AspectRatio(
+          aspectRatio: aspectRatio, // Adjust the aspect ratio as needed
+          child: CachedNetworkImage(
+            fit: BoxFit.fill,
+
+            imageUrl: image,
+            placeholder: (context, url) =>
+                Center(child: CircularProgressIndicator()),
+            errorWidget: (context, url, error) => Icon(Icons.error),
           ),
         ),
       ),

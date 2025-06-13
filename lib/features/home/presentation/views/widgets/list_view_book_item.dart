@@ -1,6 +1,5 @@
 import 'package:book/constant.dart';
 import 'package:book/core/utils/app_router.dart';
-import 'package:book/core/utils/assets.dart';
 import 'package:book/core/widgts/custome_text.dart';
 import 'package:book/core/utils/styels.dart';
 import 'package:book/features/home/data/models/home_book_model/home_book_model.dart';
