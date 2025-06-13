@@ -30,8 +30,21 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  fetchFeaturedBooks() {
-    // TODO: implement fetchFeaturedBooks
-    throw UnimplementedError();
+  fetchFeaturedBooks() async {
+    try {
+      // Fetching best seller books from the API
+      final response = await apiServises.getData('volumes?q=programming');
+      List<HomeBookModel> books = [];
+      for (var item in response['items']) {
+        books.add(HomeBookModel.fromJson(item));
+      }
+      return Right(books);
+    } catch (error) {
+      if (error is DioError) {
+        return Left(ServerError.fromDioError(error));
+      } else {
+        return left(ServerError(error.toString()));
+      }
+    }
   }
 }
