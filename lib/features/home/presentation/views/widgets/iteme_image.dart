@@ -18,7 +18,7 @@ class ItemeImage extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(image), // Replace with your image path
+              image: NetworkImage(image), // Replace with your image path
               fit: BoxFit.fill, // Adjust the fit as needed
             ),
             borderRadius: BorderRadius.circular(16),

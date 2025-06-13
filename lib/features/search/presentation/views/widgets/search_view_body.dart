@@ -1,3 +1,4 @@
+import 'package:book/features/home/data/models/home_book_model/home_book_model.dart';
 import 'package:book/features/home/presentation/views/widgets/list_view_book_item.dart';
 import 'package:book/features/search/presentation/views/widgets/custome_search_view_appbar.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class SearchViewBody extends StatelessWidget {
           Expanded(
             child: ListView.separated(
               itemBuilder: (context, index) {
-                return ListViewBookItem();
+                return ListViewBookItem(homeBookModel: HomeBookModel());
               },
               separatorBuilder: (context, index) {
                 return const SizedBox(height: 20);

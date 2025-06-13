@@ -6,9 +6,11 @@ class CustomeText extends StatelessWidget {
     super.key,
     required this.text,
     this.textStyle = Styles.textStyle18,
+    this.maxLines = 3,
   });
   final TextStyle textStyle;
   final String text;
+  final int maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class CustomeText extends StatelessWidget {
       child: Text(
         text,
         style: textStyle,
-        maxLines: 3,
+        maxLines: maxLines,
         overflow: TextOverflow.ellipsis,
       ),
     );

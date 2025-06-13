@@ -3,14 +3,15 @@ import 'package:book/core/utils/app_router.dart';
 import 'package:book/core/utils/assets.dart';
 import 'package:book/core/widgts/custome_text.dart';
 import 'package:book/core/utils/styels.dart';
+import 'package:book/features/home/data/models/home_book_model/home_book_model.dart';
 import 'package:book/features/home/presentation/views/widgets/iteme_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 class ListViewBookItem extends StatelessWidget {
-  const ListViewBookItem({super.key});
-
+  const ListViewBookItem({super.key, required this.homeBookModel});
+  final HomeBookModel homeBookModel;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -25,21 +26,28 @@ class ListViewBookItem extends StatelessWidget {
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
         child: Row(
           children: [
-            ItemeImage(image: AssetsData.testImage, aspectRatio: 2.5 / 4),
+            ItemeImage(
+              image:
+                  homeBookModel.volumeInfo!.imageLinks?.thumbnail ??
+                  "https://books.google.com/books/content?id=DBOXDQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+              aspectRatio: 2.5 / 4,
+            ),
             SizedBox(width: 30),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomeText(
-                  text: "the story name",
+                  text: homeBookModel.volumeInfo?.title ?? " :::::::::::",
                   textStyle: Styles.textStyle20.copyWith(
                     fontFamily: "GT-Sectra-Fine-Regular",
                   ),
                 ),
                 SizedBox(height: 3),
+
                 CustomeText(
-                  text: "F. Scott Fitzgerald",
+                  text: homeBookModel.volumeInfo?.authors?.join(', ') ?? "ali",
+                  maxLines: 1,
                   textStyle: Styles.textStyle14,
                 ),
                 SizedBox(height: 3),
