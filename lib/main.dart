@@ -1,3 +1,4 @@
+import 'package:book/bloco_bserver.dart';
 import 'package:book/constant.dart';
 import 'package:book/core/utils/app_router.dart';
 import 'package:book/core/utils/service_locator.dart';
@@ -9,6 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
+  setupSeviseLocator();
+  Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
 
