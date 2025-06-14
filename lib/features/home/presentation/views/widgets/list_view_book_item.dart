@@ -1,12 +1,11 @@
 import 'package:book/constant.dart';
-import 'package:book/core/utils/app_router.dart';
 import 'package:book/core/widgts/custome_text.dart';
 import 'package:book/core/utils/styels.dart';
 import 'package:book/features/home/data/models/home_book_model/home_book_model.dart';
+import 'package:book/features/home/presentation/views/book_details_view.dart';
 import 'package:book/features/home/presentation/views/widgets/iteme_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 
 class ListViewBookItem extends StatelessWidget {
   const ListViewBookItem({super.key, required this.homeBookModel});
@@ -15,7 +14,12 @@ class ListViewBookItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.bookdetailsview);
+        Navigator.pushNamed(
+          context,
+          BookDetailsView.routeName,
+          arguments: homeBookModel,
+        );
+        // GoRouter.of(context).push(AppRouter.bookdetailsview);
         // Navigate to book details view
         // context.push('/book-details');
       },
@@ -27,7 +31,7 @@ class ListViewBookItem extends StatelessWidget {
           children: [
             ItemeImage(
               image:
-                  homeBookModel.volumeInfo!.imageLinks?.thumbnail ??
+                  homeBookModel.volumeInfo?.imageLinks?.thumbnail ??
                   "https://books.google.com/books/content?id=DBOXDQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
               aspectRatio: 2.5 / 4,
             ),

@@ -1,6 +1,5 @@
-import 'package:book/core/utils/app_router.dart';
+import 'package:book/features/search/presentation/views/search_view.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class CustomBookAppbar extends StatelessWidget {
   const CustomBookAppbar({super.key});
@@ -19,7 +18,7 @@ class CustomBookAppbar extends StatelessWidget {
 
         IconButton(
           onPressed: () {
-            GoRouter.of(context).push(AppRouter.searchView);
+            Navigator.pushNamed(context, SearchView.routeName);
           },
           icon: const Icon(Icons.shopping_cart_outlined),
         ),

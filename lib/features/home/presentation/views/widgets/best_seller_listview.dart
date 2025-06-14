@@ -1,5 +1,5 @@
 import 'package:book/core/widgts/custom_error_text.dart';
-import 'package:book/core/widgts/custom_loadingIndicator.dart';
+import 'package:book/core/widgts/custom_loading_indicator.dart';
 import 'package:book/features/home/presentation/views/widgets/list_view_book_item.dart';
 import 'package:book/features/home/presentation/views_model/feature_books_cubit/feature_books_cubit.dart';
 import 'package:flutter/material.dart';

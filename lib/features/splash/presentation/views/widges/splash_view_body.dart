@@ -1,8 +1,7 @@
-import 'package:book/core/utils/app_router.dart';
 import 'package:book/core/utils/assets.dart';
+import 'package:book/features/home/presentation/views/home_views.dart';
 import 'package:book/features/splash/presentation/views/widges/animated_splash.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -38,7 +37,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void splashNavigation() {
     Future.delayed(const Duration(seconds: 3), () {
       // ignore: use_build_context_synchronously
-      GoRouter.of(context).push(AppRouter.homeviews);
+      Navigator.pushNamed(context, HomeViews.routeName);
     });
   }
 

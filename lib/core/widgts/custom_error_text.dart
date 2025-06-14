@@ -5,6 +5,6 @@ class CustomErrorText extends StatelessWidget {
   final String text;
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text(text));
+    return Center(child: Text(text, textAlign: TextAlign.center));
   }
 }

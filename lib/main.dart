@@ -1,10 +1,13 @@
 import 'package:book/bloco_bserver.dart';
 import 'package:book/constant.dart';
-import 'package:book/core/utils/app_router.dart';
 import 'package:book/core/utils/service_locator.dart';
 import 'package:book/features/home/data/repos/home_repo_impl.dart';
+import 'package:book/features/home/presentation/views/book_details_view.dart';
+import 'package:book/features/home/presentation/views/home_views.dart';
 import 'package:book/features/home/presentation/views_model/best_seller_books_cubit/best_seller_books_cubit.dart';
 import 'package:book/features/home/presentation/views_model/feature_books_cubit/feature_books_cubit.dart';
+import 'package:book/features/search/presentation/views/search_view.dart';
+import 'package:book/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,7 +36,7 @@ class MyApp extends StatelessWidget {
               FeatureBooksCubit(getIt<HomeRepoImpl>())..featchFeatureBooks(),
         ),
       ],
-      child: MaterialApp.router(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData.dark().copyWith(
@@ -43,7 +46,13 @@ class MyApp extends StatelessWidget {
             ThemeData.dark().textTheme,
           ),
         ),
-        routerConfig: AppRouter.router,
+        routes: {
+          SplashView.routeName: (context) => SplashView(),
+          HomeViews.routeName: (context) => HomeViews(),
+          BookDetailsView.routeName: (context) => BookDetailsView(),
+          SearchView.routeName: (context) => SearchView(),
+        },
+        initialRoute: SplashView.routeName,
       ),
     );
   }

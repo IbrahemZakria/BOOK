@@ -40,7 +40,30 @@ class HomeRepoImpl implements HomeRepo {
       }
       return Right(books);
     } catch (error) {
-      if (error is DioError) {
+      if (error is DioException) {
+        return Left(ServerError.fromDioError(error));
+      } else {
+        return Left(ServerError(error.toString()));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failures, List<HomeBookModel>>> fetchRelevenceBook({
+    required String category,
+  }) async {
+    try {
+      // Fetching best seller books from the API
+      var response = await apiServises.getData(
+        'volumes?q=$category&Filtering=free-ebooks&sorting=relevance',
+      );
+      List<HomeBookModel> books = [];
+      for (var item in response['items']) {
+        books.add(HomeBookModel.fromJson(item));
+      }
+      return Right(books);
+    } catch (error) {
+      if (error is DioException) {
         return Left(ServerError.fromDioError(error));
       } else {
         return Left(ServerError(error.toString()));
