@@ -12,7 +12,7 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failures, List<HomeBookModel>>> fetchBestSellerBooks() async {
     try {
       // Fetching best seller books from the API
-      final response = await apiServises.getData(
+      var response = await apiServises.getData(
         'volumes?Filtering=free-ebooks&q=bestseller',
       );
       List<HomeBookModel> books = [];
@@ -21,10 +21,10 @@ class HomeRepoImpl implements HomeRepo {
       }
       return Right(books);
     } catch (error) {
-      if (error is DioError) {
+      if (error is DioException) {
         return Left(ServerError.fromDioError(error));
       } else {
-        return left(ServerError(error.toString()));
+        return Left(ServerError(error.toString()));
       }
     }
   }
@@ -43,7 +43,7 @@ class HomeRepoImpl implements HomeRepo {
       if (error is DioError) {
         return Left(ServerError.fromDioError(error));
       } else {
-        return left(ServerError(error.toString()));
+        return Left(ServerError(error.toString()));
       }
     }
   }

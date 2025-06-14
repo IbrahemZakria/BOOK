@@ -3,19 +3,22 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class ApiServises {
-  final  Dio _dio = Dio();
+  final Dio _dio = Dio();
   final String _baseUrl = 'https://www.googleapis.com/books/v1/';
 
   Future<dynamic> getData(String endpoint) async {
     try {
-      Response response = await _dio.get(_baseUrl+endpoint);
+      Response response = await _dio.get(_baseUrl + endpoint);
       if (response.statusCode == 200) {
         return response.data;
       } else {
-        throw Exception('Failed to load data: ${response.statusCode}');
+        throw DioException(
+          requestOptions: RequestOptions(),
+          type: DioExceptionType.unknown,
+        );
       }
     } catch (e) {
-      throw Exception('Failed to load data: $e');
+      rethrow;
     }
   }
 
@@ -34,17 +37,20 @@ class ApiServises {
     }
     try {
       Response response = await _dio.post(
-        (_baseUrl+endpoint),
+        (_baseUrl + endpoint),
         data: data,
         options: Options(headers: headers),
       );
       if (response.statusCode == 200) {
         return response.data;
       } else {
-        throw Exception('Failed to post data: ${response.statusCode}');
+        throw DioException(
+          requestOptions: RequestOptions(),
+          type: DioExceptionType.unknown,
+        );
       }
     } catch (e) {
-      throw Exception('Failed to post data: $e');
+      rethrow;
     }
   } //////////////////////////////////////////////////////////////////////////////
 
@@ -62,7 +68,7 @@ class ApiServises {
     }
     try {
       Response response = await _dio.put(
-        (_baseUrl+endpoint),
+        (_baseUrl + endpoint),
         data: data,
         options: Options(headers: headers),
       );
@@ -76,10 +82,13 @@ class ApiServises {
 
         return responseData;
       } else {
-        throw Exception('Failed to update  data: ${response.statusCode}');
+        throw DioException(
+          requestOptions: RequestOptions(),
+          type: DioExceptionType.unknown,
+        );
       }
     } catch (e) {
-      throw Exception('Failed to update  data: $e');
+      rethrow;
     }
   }
 }
