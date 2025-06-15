@@ -34,7 +34,7 @@ class Bookviewsbody extends StatelessWidget {
     return BlocProvider(
       create: (context) => RelevenceBookCubitCubit(getIt<HomeRepoImpl>())
         ..fetchRelevenceBookDetails(
-          category: homeBookModel.volumeInfo!.categories![0],
+          category: homeBookModel.volumeInfo?.categories?[0] ?? 'play',
         ),
 
       child: Scaffold(
@@ -56,6 +56,7 @@ class Bookviewsbody extends StatelessWidget {
               SizedBox(height: 45),
               Text(
                 homeBookModel.volumeInfo!.title!,
+                maxLines: 1,
                 style: TextStyle(
                   color: kwhitecolor,
                   fontSize: 30,
