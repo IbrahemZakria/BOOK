@@ -1,4 +1,5 @@
 import 'package:book/features/home/data/models/home_book_model/home_book_model.dart';
+import 'package:book/features/home/presentation/views/book_details_view.dart';
 import 'package:book/features/home/presentation/views/widgets/iteme_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +44,13 @@ class CarousesliderImageWidget extends StatelessWidget {
 
         itemBuilder: (context, index, realIndex) {
           return ItemeImage(
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                BookDetailsView.routeName,
+                arguments: books[index],
+              );
+            },
             image:
                 books[index].volumeInfo?.imageLinks?.thumbnail ??
                 "http://books.google.com/books/content?id=DBOXDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
