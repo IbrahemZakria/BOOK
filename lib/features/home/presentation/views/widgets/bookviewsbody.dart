@@ -96,7 +96,9 @@ class Bookviewsbody extends StatelessWidget {
                     child: TextButton(
                       onPressed: () async {
                         if (homeBookModel.accessInfo!.pdf!.isAvailable!) {
-                          lunchUrl(homeBookModel);
+                          lunchUrl(
+                            homeBookModel.accessInfo!.pdf!.acsTokenLink!,
+                          );
                         } else {
                           Usermessage.show(
                             message: "it isn't available",
