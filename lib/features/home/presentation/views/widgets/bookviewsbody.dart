@@ -15,7 +15,6 @@ import 'package:book/features/home/presentation/views_model/relevence_book_cubit
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Bookviewsbody extends StatelessWidget {
   const Bookviewsbody({super.key, required this.homeBookModel});
