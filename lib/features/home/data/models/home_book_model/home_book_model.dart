@@ -1,9 +1,11 @@
+import 'package:book/features/home/domain/entities/book_entity.dart';
+
 import 'access_info.dart';
 import 'sale_info.dart';
 import 'search_info.dart';
 import 'volume_info.dart';
 
-class HomeBookModel {
+class HomeBookModel extends BookEntity {
   String? kind;
   String? id;
   String? etag;
@@ -22,7 +24,15 @@ class HomeBookModel {
     this.saleInfo,
     this.accessInfo,
     this.searchInfo,
-  });
+  }) : super(
+         image: volumeInfo?.imageLinks?.thumbnail ?? "",
+         title: volumeInfo?.title ?? '',
+         autherName: volumeInfo?.authors?.join(" , ") ?? "",
+         price: saleInfo?.listPrice?.amount == null
+             ? "Free"
+             : "${saleInfo?.listPrice?.amount} ${saleInfo?.listPrice?.currencyCode}",
+         rating: volumeInfo?.averageRating ?? 0,
+       );
 
   factory HomeBookModel.fromJson(Map<String, dynamic> json) => HomeBookModel(
     kind: json['kind'] as String?,
