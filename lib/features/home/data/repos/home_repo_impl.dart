@@ -1,7 +1,7 @@
 import 'package:book/core/error/failures.dart';
 import 'package:book/core/helper/services/api_servises.dart';
 import 'package:book/features/home/data/models/home_book_model/home_book_model.dart';
-import 'package:book/features/home/data/repos/home_repo.dart';
+import 'package:book/features/home/domain/repos/home_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
