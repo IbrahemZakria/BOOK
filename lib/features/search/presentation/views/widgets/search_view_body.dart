@@ -3,7 +3,7 @@ import 'package:book/core/widgts/custom_error_text.dart';
 import 'package:book/core/widgts/custom_loading_indicator.dart';
 import 'package:book/features/home/data/repos/home_repo_impl.dart';
 import 'package:book/features/home/presentation/views/widgets/list_view_book_item.dart';
-import 'package:book/features/home/presentation/views_model/relevence_book_cubit_cubit.dart';
+import 'package:book/features/home/presentation/views_model/relevence_book_cubit/relevence_book_cubit_cubit.dart';
 import 'package:book/features/search/presentation/views/widgets/custome_search_view_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,9 +31,7 @@ class SearchViewBody extends StatelessWidget {
                   return Expanded(
                     child: ListView.separated(
                       itemBuilder: (context, index) {
-                        return ListViewBookItem(
-                          homeBookModel: state.books[index],
-                        );
+                        return ListViewBookItem(bookEntity: state.books[index]);
                       },
                       separatorBuilder: (context, index) {
                         return const SizedBox(height: 20);

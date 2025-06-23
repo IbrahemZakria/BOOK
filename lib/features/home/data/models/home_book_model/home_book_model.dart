@@ -25,6 +25,7 @@ class HomeBookModel extends BookEntity {
     this.accessInfo,
     this.searchInfo,
   }) : super(
+         category: volumeInfo?.categories?[0] ?? '',
          image: volumeInfo?.imageLinks?.thumbnail ?? "",
          title: volumeInfo?.title ?? '',
          autherName: volumeInfo?.authors?.join(" , ") ?? "",

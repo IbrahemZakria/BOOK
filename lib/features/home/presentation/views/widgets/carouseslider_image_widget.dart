@@ -1,4 +1,4 @@
-import 'package:book/features/home/data/models/home_book_model/home_book_model.dart';
+import 'package:book/features/home/domain/entities/book_entity.dart';
 import 'package:book/features/home/presentation/views/book_details_view.dart';
 import 'package:book/features/home/presentation/views/widgets/iteme_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -13,7 +13,7 @@ class CarousesliderImageWidget extends StatelessWidget {
     required this.books,
   });
   final double spaceBetweenItem;
-  final List<HomeBookModel> books;
+  final List<BookEntity> books;
 
   final bool centerheadline;
   final bool infintyScroll;
@@ -51,9 +51,7 @@ class CarousesliderImageWidget extends StatelessWidget {
                 arguments: books[index],
               );
             },
-            image:
-                books[index].volumeInfo?.imageLinks?.thumbnail ??
-                "http://books.google.com/books/content?id=DBOXDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+            image: books[index].image,
           );
         },
       ),

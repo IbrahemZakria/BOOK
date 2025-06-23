@@ -23,7 +23,7 @@ class BestSellerListview extends StatelessWidget {
               addAutomaticKeepAlives: true,
               addRepaintBoundaries: true,
               itemBuilder: (context, index) {
-                return ListViewBookItem(homeBookModel: state.books[index]);
+                return ListViewBookItem(bookEntity: state.books[index]);
               },
               separatorBuilder: (context, index) => SizedBox(height: 20),
             );

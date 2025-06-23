@@ -10,7 +10,7 @@ abstract class FeatureBooksState extends Equatable {
 class FeatureBooksInitial extends FeatureBooksState {}
 
 class FeatureBookssuccess extends FeatureBooksState {
-  final List<HomeBookModel> books;
+  final List<BookEntity> books;
   const FeatureBookssuccess(this.books);
 }
 

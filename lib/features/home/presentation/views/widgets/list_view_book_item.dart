@@ -1,15 +1,15 @@
 import 'package:book/constant.dart';
 import 'package:book/core/widgts/custome_text.dart';
 import 'package:book/core/utils/styels.dart';
-import 'package:book/features/home/data/models/home_book_model/home_book_model.dart';
+import 'package:book/features/home/domain/entities/book_entity.dart';
 import 'package:book/features/home/presentation/views/book_details_view.dart';
 import 'package:book/features/home/presentation/views/widgets/iteme_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ListViewBookItem extends StatelessWidget {
-  const ListViewBookItem({super.key, required this.homeBookModel});
-  final HomeBookModel homeBookModel;
+  const ListViewBookItem({super.key, required this.bookEntity});
+  final BookEntity bookEntity;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -17,7 +17,7 @@ class ListViewBookItem extends StatelessWidget {
         Navigator.pushNamed(
           context,
           BookDetailsView.routeName,
-          arguments: homeBookModel,
+          arguments: bookEntity,
         );
         // GoRouter.of(context).push(AppRouter.bookdetailsview);
         // Navigate to book details view
@@ -29,19 +29,14 @@ class ListViewBookItem extends StatelessWidget {
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
         child: Row(
           children: [
-            ItemeImage(
-              image:
-                  homeBookModel.volumeInfo?.imageLinks?.thumbnail ??
-                  "https://books.google.com/books/content?id=DBOXDQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-              aspectRatio: 2.5 / 4,
-            ),
+            ItemeImage(image: bookEntity.image, aspectRatio: 2.5 / 4),
             SizedBox(width: 30),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomeText(
-                  text: homeBookModel.volumeInfo?.title ?? " :::::::::::",
+                  text: bookEntity.title,
                   textStyle: Styles.textStyle20.copyWith(
                     fontFamily: "GT-Sectra-Fine-Regular",
                   ),
@@ -49,7 +44,7 @@ class ListViewBookItem extends StatelessWidget {
                 SizedBox(height: 3),
 
                 CustomeText(
-                  text: homeBookModel.volumeInfo?.authors?.join(', ') ?? "ali",
+                  text: bookEntity.autherName,
                   maxLines: 1,
                   textStyle: Styles.textStyle14,
                 ),
@@ -59,7 +54,7 @@ class ListViewBookItem extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        "10.99 \$",
+                        bookEntity.price,
                         style: Styles.textStyle20.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -73,7 +68,10 @@ class ListViewBookItem extends StatelessWidget {
                       SizedBox(width: 6.3),
                       Text("rate", style: Styles.textStyle16),
                       SizedBox(width: 8),
-                      Text("(rate)", style: Styles.textStyle14),
+                      Text(
+                        bookEntity.rating.toString(),
+                        style: Styles.textStyle14,
+                      ),
                     ],
                   ),
                 ),

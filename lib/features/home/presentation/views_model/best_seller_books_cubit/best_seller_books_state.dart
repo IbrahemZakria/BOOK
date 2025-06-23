@@ -12,7 +12,7 @@ class BestSellerBooksInitial extends BestSellerBooksState {}
 class BestSellerBooksLoading extends BestSellerBooksState {}
 
 class BestSellerBooksSucess extends BestSellerBooksState {
-  final List<HomeBookModel> books;
+  final List<BookEntity> books;
   const BestSellerBooksSucess(this.books);
 }
 

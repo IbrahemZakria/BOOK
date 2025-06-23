@@ -12,7 +12,7 @@ class RelevenceBookCubitInitial extends RelevenceBookCubitState {}
 class RelevenceBookCubitloading extends RelevenceBookCubitState {}
 
 class RelevenceBookCubitsucess extends RelevenceBookCubitState {
-  final List<HomeBookModel> books;
+  final List<BookEntity> books;
   const RelevenceBookCubitsucess(this.books);
 }
 

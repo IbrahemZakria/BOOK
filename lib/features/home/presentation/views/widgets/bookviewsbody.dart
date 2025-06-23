@@ -11,7 +11,7 @@ import 'package:book/features/home/presentation/views/widgets/carouseslider_imag
 import 'package:book/features/home/presentation/views/widgets/custom_book_appbar.dart';
 import 'package:book/features/home/presentation/views/widgets/custom_book_button.dart';
 import 'package:book/features/home/presentation/views/widgets/iteme_image.dart';
-import 'package:book/features/home/presentation/views_model/relevence_book_cubit_cubit.dart';
+import 'package:book/features/home/presentation/views_model/relevence_book_cubit/relevence_book_cubit_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
