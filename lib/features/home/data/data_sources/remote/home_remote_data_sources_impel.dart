@@ -1,3 +1,5 @@
+import 'package:book/constant.dart';
+import 'package:book/core/helper/function/add_cashed_data.dart';
 import 'package:book/core/helper/function/add_response_to_list.dart';
 import 'package:book/core/helper/services/api_servises.dart';
 import 'package:book/features/home/data/data_sources/remote/home_remote_data_sources.dart';
@@ -12,6 +14,8 @@ class HomeRemoteDataSourcesImpel extends HomeRemoteDataSources {
     );
     List<BookEntity> books = [];
     addResponseToList(response, books);
+    addCashedData(books: books, boxName: kbestSellerBox);
+
     return books;
   }
 
@@ -20,6 +24,7 @@ class HomeRemoteDataSourcesImpel extends HomeRemoteDataSources {
     final response = await _apiServises.getData('volumes?q=programming');
     List<BookEntity> books = [];
     addResponseToList(response, books);
+    addCashedData(books: books, boxName: kFeaturedBox);
     return books;
   }
 
@@ -32,6 +37,8 @@ class HomeRemoteDataSourcesImpel extends HomeRemoteDataSources {
     );
     List<BookEntity> books = [];
     addResponseToList(response, books);
+    addCashedData(books: books, boxName: kRelvanseBox);
+
     return books;
   }
 }

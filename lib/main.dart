@@ -20,7 +20,9 @@ void main() async {
   await Hive.initFlutter();
 
   Hive.registerAdapter(BookEntityAdapter()); // تسجيل الـ adapter
-  await Hive.openBox<BookEntity>('books'); // فتح صندوق للكتب
+  await Hive.openBox<BookEntity>(kFeaturedBox);
+  await Hive.openBox<BookEntity>(kbestSellerBox);
+  await Hive.openBox<BookEntity>(kRelvanseBox);
   Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
