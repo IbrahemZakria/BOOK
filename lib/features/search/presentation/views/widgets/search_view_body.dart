@@ -2,6 +2,7 @@ import 'package:book/core/utils/service_locator.dart';
 import 'package:book/core/widgts/custom_error_text.dart';
 import 'package:book/core/widgts/custom_loading_indicator.dart';
 import 'package:book/features/home/data/repos/home_repo_impl.dart';
+import 'package:book/features/home/domain/use_cases/fetch_relevence_book.dart';
 import 'package:book/features/home/presentation/views/widgets/list_view_book_item.dart';
 import 'package:book/features/home/presentation/views_model/relevence_book_cubit/relevence_book_cubit_cubit.dart';
 import 'package:book/features/search/presentation/views/widgets/custome_search_view_appbar.dart';
@@ -14,7 +15,9 @@ class SearchViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RelevenceBookCubitCubit(getIt<HomeRepoImpl>()),
+      create: (context) => RelevenceBookCubitCubit(
+        FetchRelevenceBookUseCase(getIt<HomeRepoImpl>()),
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32.0),
         child: Column(

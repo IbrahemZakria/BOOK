@@ -5,10 +5,12 @@ import 'package:book/features/home/domain/repos/home_repo.dart';
 import 'package:dartz/dartz.dart';
 
 class FetchRelevenceBookUseCase extends UsesCase<List<BookEntity>, String> {
-  late final HomeRepo _homeRepo;
+  final HomeRepo homeRepo;
+
+  FetchRelevenceBookUseCase(this.homeRepo);
 
   @override
   Future<Either<Failures, List<BookEntity>>> call(String category) {
-    return _homeRepo.fetchRelevenceBook(category: category);
+    return homeRepo.fetchRelevenceBook(category: category);
   }
 }

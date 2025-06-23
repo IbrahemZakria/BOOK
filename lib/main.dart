@@ -3,6 +3,8 @@ import 'package:book/constant.dart';
 import 'package:book/core/utils/service_locator.dart';
 import 'package:book/features/home/data/repos/home_repo_impl.dart';
 import 'package:book/features/home/domain/entities/book_entity.dart';
+import 'package:book/features/home/domain/use_cases/fetch_best_seller_books_use_case.dart';
+import 'package:book/features/home/domain/use_cases/fetch_featured_books_use_case.dart';
 import 'package:book/features/home/presentation/views/book_details_view.dart';
 import 'package:book/features/home/presentation/views/home_views.dart';
 import 'package:book/features/home/presentation/views_model/best_seller_books_cubit/best_seller_books_cubit.dart';
@@ -36,13 +38,14 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              BestSellerBooksCubit(getIt<HomeRepoImpl>())
-                ..featchBestSellerBooks(),
+          create: (context) => BestSellerBooksCubit(
+            FetchBestSellerBooksUseCase(getIt<HomeRepoImpl>()),
+          )..featchBestSellerBooks(),
         ),
         BlocProvider(
-          create: (context) =>
-              FeatureBooksCubit(getIt<HomeRepoImpl>())..featchFeatureBooks(),
+          create: (context) => FeatureBooksCubit(
+            FetchFeaturedBooksUseCase(getIt<HomeRepoImpl>()),
+          )..featchFeatureBooks(),
         ),
       ],
       child: MaterialApp(

@@ -7,6 +7,7 @@ import 'package:book/core/widgts/custom_loading_indicator.dart';
 import 'package:book/core/widgts/user_message.dart';
 import 'package:book/features/home/data/models/home_book_model/home_book_model.dart';
 import 'package:book/features/home/data/repos/home_repo_impl.dart';
+import 'package:book/features/home/domain/use_cases/fetch_relevence_book.dart';
 import 'package:book/features/home/presentation/views/widgets/carouseslider_image_widget.dart';
 import 'package:book/features/home/presentation/views/widgets/custom_book_appbar.dart';
 import 'package:book/features/home/presentation/views/widgets/custom_book_button.dart';
@@ -31,10 +32,12 @@ class Bookviewsbody extends StatelessWidget {
     }
 
     return BlocProvider(
-      create: (context) => RelevenceBookCubitCubit(getIt<HomeRepoImpl>())
-        ..fetchRelevenceBookDetails(
-          category: homeBookModel.volumeInfo?.categories?[0] ?? 'play',
-        ),
+      create: (context) =>
+          RelevenceBookCubitCubit(
+            FetchRelevenceBookUseCase(getIt<HomeRepoImpl>()),
+          )..fetchRelevenceBookDetails(
+            category: homeBookModel.volumeInfo?.categories?[0] ?? 'play',
+          ),
 
       child: Scaffold(
         body: Padding(
