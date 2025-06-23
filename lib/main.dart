@@ -2,6 +2,7 @@ import 'package:book/bloco_bserver.dart';
 import 'package:book/constant.dart';
 import 'package:book/core/utils/service_locator.dart';
 import 'package:book/features/home/data/repos/home_repo_impl.dart';
+import 'package:book/features/home/domain/entities/book_entity.dart';
 import 'package:book/features/home/presentation/views/book_details_view.dart';
 import 'package:book/features/home/presentation/views/home_views.dart';
 import 'package:book/features/home/presentation/views_model/best_seller_books_cubit/best_seller_books_cubit.dart';
@@ -11,9 +12,15 @@ import 'package:book/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/adapters.dart';
 
-void main() {
+void main() async {
   setupSeviseLocator();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+
+  Hive.registerAdapter(BookEntityAdapter()); // تسجيل الـ adapter
+  await Hive.openBox<BookEntity>('books'); // فتح صندوق للكتب
   Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }

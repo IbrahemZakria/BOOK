@@ -1,6 +1,6 @@
+import 'package:book/core/helper/function/add_response_to_list.dart';
 import 'package:book/core/helper/services/api_servises.dart';
 import 'package:book/features/home/data/data_sources/remote/home_remote_data_sources.dart';
-import 'package:book/features/home/data/models/home_book_model/home_book_model.dart';
 import 'package:book/features/home/domain/entities/book_entity.dart';
 
 class HomeRemoteDataSourcesImpel extends HomeRemoteDataSources {
@@ -11,21 +11,27 @@ class HomeRemoteDataSourcesImpel extends HomeRemoteDataSources {
       'volumes?Filtering=free-ebooks&q=bestseller',
     );
     List<BookEntity> books = [];
-    addBooksListt(response, books);
+    addResponseToList(response, books);
     return books;
-  }
-
-  void addBooksListt(response, List<BookEntity> books) {
-    for (var item in response['items']) {
-      books.add(HomeBookModel.fromJson(item));
-    }
   }
 
   @override
   Future<List<BookEntity>> fetchFeaturedBooks() async {
     final response = await _apiServises.getData('volumes?q=programming');
     List<BookEntity> books = [];
-    addBooksListt(response, books);
+    addResponseToList(response, books);
+    return books;
+  }
+
+  @override
+  Future<List<BookEntity>> fetchRelevenceBook({
+    required String category,
+  }) async {
+    final response = await _apiServises.getData(
+      'volumes?q=$category&Filtering=free-ebooks&sorting=relevance',
+    );
+    List<BookEntity> books = [];
+    addResponseToList(response, books);
     return books;
   }
 }
