@@ -1,3 +1,4 @@
+import 'package:book/core/helper/services/api_servises.dart';
 import 'package:book/features/home/data/data_sources/local/home_local_data_sources_impel.dart';
 import 'package:book/features/home/data/data_sources/remote/home_remote_data_sources_impel.dart';
 import 'package:book/features/home/data/repos/home_repo_impl.dart';
@@ -8,7 +9,7 @@ final getIt = GetIt.instance;
 void setupSeviseLocator() {
   getIt.registerSingleton<HomeRepoImpl>(
     HomeRepoImpl(
-      homeRemoteDataSourcesImpel: HomeRemoteDataSourcesImpel(),
+      homeRemoteDataSourcesImpel: HomeRemoteDataSourcesImpel(ApiServises()),
       homeLocalDataSourcesImpel: HomeLocalDataSourcesImpel(),
     ),
   );

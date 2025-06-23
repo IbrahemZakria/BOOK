@@ -6,7 +6,9 @@ import 'package:book/features/home/data/data_sources/remote/home_remote_data_sou
 import 'package:book/features/home/domain/entities/book_entity.dart';
 
 class HomeRemoteDataSourcesImpel extends HomeRemoteDataSources {
-  late final ApiServises _apiServises;
+  final ApiServises _apiServises;
+
+  HomeRemoteDataSourcesImpel(this._apiServises);
   @override
   Future<List<BookEntity>> fetchBestSellerBooks() async {
     var response = await _apiServises.getData(
