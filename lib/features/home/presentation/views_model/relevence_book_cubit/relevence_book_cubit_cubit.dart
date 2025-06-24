@@ -8,7 +8,7 @@ part 'relevence_book_cubit_state.dart';
 class RelevenceBookCubitCubit extends Cubit<RelevenceBookCubitState> {
   RelevenceBookCubitCubit(this.fetchRelevenceBookUseCase)
     : super(RelevenceBookCubitInitial());
-  FetchRelevenceBookUseCase fetchRelevenceBookUseCase;
+  final FetchRelevenceBookUseCase fetchRelevenceBookUseCase;
   Future fetchRelevenceBookDetails({required String category}) async {
     emit(RelevenceBookCubitloading());
     var result = await fetchRelevenceBookUseCase.call(category);

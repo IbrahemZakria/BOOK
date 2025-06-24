@@ -7,7 +7,7 @@ part 'feature_books_state.dart';
 
 class FeatureBooksCubit extends Cubit<FeatureBooksState> {
   FeatureBooksCubit(this.featuredBooksUseCase) : super(FeatureBooksInitial());
-  FetchFeaturedBooksUseCase featuredBooksUseCase;
+  final FetchFeaturedBooksUseCase featuredBooksUseCase;
   Future featchFeatureBooks() async {
     emit(FeatureBooksloading());
     var resault = await featuredBooksUseCase.call();

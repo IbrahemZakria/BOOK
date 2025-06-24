@@ -8,7 +8,7 @@ part 'best_seller_books_state.dart';
 class BestSellerBooksCubit extends Cubit<BestSellerBooksState> {
   BestSellerBooksCubit(this.fetchBestSellerBooksUseCase)
     : super(BestSellerBooksInitial());
-  FetchBestSellerBooksUseCase fetchBestSellerBooksUseCase;
+  final FetchBestSellerBooksUseCase fetchBestSellerBooksUseCase;
   Future featchBestSellerBooks() async {
     emit(BestSellerBooksLoading());
     var resault = await fetchBestSellerBooksUseCase.call();
