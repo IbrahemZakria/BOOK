@@ -5,8 +5,8 @@ import 'package:book/core/utils/styels.dart';
 import 'package:book/core/widgts/custom_error_text.dart';
 import 'package:book/core/widgts/custom_loading_indicator.dart';
 import 'package:book/core/widgts/user_message.dart';
-import 'package:book/features/home/data/models/home_book_model/home_book_model.dart';
 import 'package:book/features/home/data/repos/home_repo_impl.dart';
+import 'package:book/features/home/domain/entities/book_entity.dart';
 import 'package:book/features/home/domain/use_cases/fetch_relevence_book.dart';
 import 'package:book/features/home/presentation/views/widgets/carouseslider_image_widget.dart';
 import 'package:book/features/home/presentation/views/widgets/custom_book_appbar.dart';
@@ -18,13 +18,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Bookviewsbody extends StatelessWidget {
-  const Bookviewsbody({super.key, required this.homeBookModel});
-  final HomeBookModel homeBookModel;
+  const Bookviewsbody({super.key, required this.bookEntity});
+  final BookEntity bookEntity;
 
   @override
   Widget build(BuildContext context) {
     accessprviw() {
-      if (homeBookModel.accessInfo!.pdf!.isAvailable!) {
+      if (bookEntity.isavailable) {
         return 'Free preview';
       } else {
         return "not available";
@@ -32,12 +32,9 @@ class Bookviewsbody extends StatelessWidget {
     }
 
     return BlocProvider(
-      create: (context) =>
-          RelevenceBookCubitCubit(
-            FetchRelevenceBookUseCase(getIt<HomeRepoImpl>()),
-          )..fetchRelevenceBookDetails(
-            category: homeBookModel.volumeInfo?.categories?[0] ?? 'play',
-          ),
+      create: (context) => RelevenceBookCubitCubit(
+        FetchRelevenceBookUseCase(getIt<HomeRepoImpl>()),
+      )..fetchRelevenceBookDetails(category: bookEntity.category),
 
       child: Scaffold(
         body: Padding(
@@ -49,15 +46,13 @@ class Bookviewsbody extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.3,
                 child: ItemeImage(
-                  image:
-                      homeBookModel.volumeInfo?.imageLinks?.thumbnail ??
-                      "https://books.google.com/books/content?id=lF_zLLqSThcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+                  image: bookEntity.image,
                   aspectRatio: 2.8 / 5,
                 ),
               ),
               SizedBox(height: 45),
               Text(
-                homeBookModel.volumeInfo!.title!,
+                bookEntity.title,
                 maxLines: 1,
                 style: TextStyle(
                   color: kwhitecolor,
@@ -67,7 +62,7 @@ class Bookviewsbody extends StatelessWidget {
               ),
               SizedBox(height: 7),
               Text(
-                homeBookModel.volumeInfo?.authors?.join(",") ?? "",
+                bookEntity.autherName,
                 style: Styles.textStyle18.copyWith(color: Colors.grey),
               ),
               SizedBox(height: 7),
@@ -76,7 +71,7 @@ class Bookviewsbody extends StatelessWidget {
                 children: [
                   Icon(FontAwesomeIcons.solidStar, color: kstarcolor, size: 16),
                   SizedBox(width: 6.3),
-                  Text("0", style: Styles.textStyle16),
+                  Text(bookEntity.rating.toString(), style: Styles.textStyle16),
                   SizedBox(width: 8),
                   Text("(rate)", style: Styles.textStyle14),
                 ],
@@ -89,7 +84,7 @@ class Bookviewsbody extends StatelessWidget {
                     leftRadius: 16,
                     buttoncolor: kwhitecolor,
                     child: Text(
-                      'price',
+                      bookEntity.price,
                       style: Styles.textStyle20.copyWith(color: Colors.black),
                     ),
                   ),
@@ -98,10 +93,8 @@ class Bookviewsbody extends StatelessWidget {
                     buttoncolor: Color(0xffEF8262),
                     child: TextButton(
                       onPressed: () async {
-                        if (homeBookModel.accessInfo!.pdf!.isAvailable!) {
-                          lunchUrl(
-                            homeBookModel.accessInfo!.pdf!.acsTokenLink!,
-                          );
+                        if (bookEntity.isavailable) {
+                          lunchUrl(bookEntity.availableUrl);
                         } else {
                           Usermessage.show(
                             message: "it isn't available",

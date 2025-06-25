@@ -11,6 +11,13 @@ class BestSellerBooksInitial extends BestSellerBooksState {}
 
 class BestSellerBooksLoading extends BestSellerBooksState {}
 
+class PaginationBestSellerBooksLoading extends BestSellerBooksState {}
+
+class PaginationBestSellerBooksfailure extends BestSellerBooksState {
+  final String errorMessage;
+  const PaginationBestSellerBooksfailure(this.errorMessage);
+}
+
 class BestSellerBooksSucess extends BestSellerBooksState {
   final List<BookEntity> books;
   const BestSellerBooksSucess(this.books);

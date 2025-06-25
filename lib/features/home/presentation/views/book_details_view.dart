@@ -1,4 +1,4 @@
-import 'package:book/features/home/data/models/home_book_model/home_book_model.dart';
+import 'package:book/features/home/domain/entities/book_entity.dart';
 import 'package:book/features/home/presentation/views/widgets/bookviewsbody.dart';
 import 'package:flutter/material.dart';
 
@@ -8,11 +8,11 @@ class BookDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomeBookModel args =
-        ModalRoute.of(context)!.settings.arguments as HomeBookModel;
+    final BookEntity args =
+        ModalRoute.of(context)!.settings.arguments as BookEntity;
 
     return Scaffold(
-      body: SafeArea(child: Bookviewsbody(homeBookModel: args)),
+      body: SafeArea(child: Bookviewsbody(bookEntity: args)),
     );
   }
 }

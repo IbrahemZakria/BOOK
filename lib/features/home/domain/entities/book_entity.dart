@@ -21,6 +21,10 @@ class BookEntity extends HiveObject {
 
   @HiveField(5)
   final num rating;
+  @HiveField(6)
+  final bool isavailable;
+  @HiveField(7)
+  final String availableUrl;
 
   BookEntity({
     required this.category,
@@ -29,5 +33,7 @@ class BookEntity extends HiveObject {
     required this.autherName,
     required this.price,
     required this.rating,
+    required this.isavailable,
+    required this.availableUrl,
   });
 }

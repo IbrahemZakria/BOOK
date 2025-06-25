@@ -10,6 +10,8 @@ class HomeLocalDataSourcesImpel extends HomeLocalDataSources {
     int startIndex = pageNumber * 10;
     int endIndex = startIndex + 10;
     int listLength = box.values.length;
+    print('fetchBestSellerBooks called with pageNumper: $listLength');
+
     if (startIndex >= listLength || endIndex > listLength) {
       return [];
     }

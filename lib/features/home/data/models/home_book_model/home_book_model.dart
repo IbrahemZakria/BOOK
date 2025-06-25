@@ -33,6 +33,8 @@ class HomeBookModel extends BookEntity {
              ? "Free"
              : "${saleInfo?.listPrice?.amount} ${saleInfo?.listPrice?.currencyCode}",
          rating: volumeInfo?.averageRating ?? 0,
+         availableUrl: accessInfo?.pdf?.acsTokenLink ?? "",
+         isavailable: accessInfo?.pdf?.isAvailable ?? false,
        );
 
   factory HomeBookModel.fromJson(Map<String, dynamic> json) => HomeBookModel(

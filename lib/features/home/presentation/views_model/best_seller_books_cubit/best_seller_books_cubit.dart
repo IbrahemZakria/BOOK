@@ -10,10 +10,17 @@ class BestSellerBooksCubit extends Cubit<BestSellerBooksState> {
     : super(BestSellerBooksInitial());
   final FetchBestSellerBooksUseCase _fetchBestSellerBooksUseCase;
   Future featchBestSellerBooks({int pageNumper = 0}) async {
-    emit(BestSellerBooksLoading());
+    if (pageNumper > 0) {
+      emit(PaginationBestSellerBooksLoading());
+    } else {
+      emit(BestSellerBooksLoading());
+    }
     var resault = await _fetchBestSellerBooksUseCase.call(pageNumper);
     resault.fold(
       (failures) {
+        if (pageNumper > 0) {
+          emit(PaginationBestSellerBooksfailure("This is all the books"));
+        }
         emit(BestSellerBooksFailuer(failures.errorMessage));
       },
       (books) {
