@@ -6,12 +6,12 @@ import 'package:equatable/equatable.dart';
 part 'best_seller_books_state.dart';
 
 class BestSellerBooksCubit extends Cubit<BestSellerBooksState> {
-  BestSellerBooksCubit(this.fetchBestSellerBooksUseCase)
+  BestSellerBooksCubit(this._fetchBestSellerBooksUseCase)
     : super(BestSellerBooksInitial());
-  final FetchBestSellerBooksUseCase fetchBestSellerBooksUseCase;
-  Future featchBestSellerBooks() async {
+  final FetchBestSellerBooksUseCase _fetchBestSellerBooksUseCase;
+  Future featchBestSellerBooks({int pageNumper = 0}) async {
     emit(BestSellerBooksLoading());
-    var resault = await fetchBestSellerBooksUseCase.call();
+    var resault = await _fetchBestSellerBooksUseCase.call(pageNumper);
     resault.fold(
       (failures) {
         emit(BestSellerBooksFailuer(failures.errorMessage));

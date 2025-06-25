@@ -15,14 +15,21 @@ class HomeRepoImpl implements HomeRepo {
     required this.homeLocalDataSourcesImpel,
   });
   @override
-  Future<Either<Failures, List<BookEntity>>> fetchBestSellerBooks() async {
+  Future<Either<Failures, List<BookEntity>>> fetchBestSellerBooks({
+    int pageNumper = 0,
+  }) async {
+    print('fetchBestSellerBooks called with pageNumper: $pageNumper');
     try {
       List<BookEntity> books;
-      books = homeLocalDataSourcesImpel.fetchBestSellerBooks();
+      books = homeLocalDataSourcesImpel.fetchBestSellerBooks(
+        pageNumber: pageNumper,
+      );
       if (books.isNotEmpty) {
         return Right(books);
       }
-      books = await homeRemoteDataSourcesImpel.fetchBestSellerBooks();
+      books = await homeRemoteDataSourcesImpel.fetchBestSellerBooks(
+        pageNumper: pageNumper,
+      );
 
       return Right(books);
     } catch (error) {

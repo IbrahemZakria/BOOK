@@ -5,9 +5,15 @@ import 'package:hive_flutter/adapters.dart';
 
 class HomeLocalDataSourcesImpel extends HomeLocalDataSources {
   @override
-  List<BookEntity> fetchBestSellerBooks() {
+  List<BookEntity> fetchBestSellerBooks({int pageNumber = 0}) {
     var box = Hive.box<BookEntity>(kbestSellerBox);
-    return box.values.toList();
+    int startIndex = pageNumber * 10;
+    int endIndex = startIndex + 10;
+    int listLength = box.values.length;
+    if (startIndex >= listLength || endIndex > listLength) {
+      return [];
+    }
+    return box.values.toList().sublist(startIndex, endIndex);
   }
 
   @override

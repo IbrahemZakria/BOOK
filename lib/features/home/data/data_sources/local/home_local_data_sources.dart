@@ -1,7 +1,7 @@
 import 'package:book/features/home/domain/entities/book_entity.dart';
 
 abstract class HomeLocalDataSources {
-  List<BookEntity> fetchBestSellerBooks();
+  List<BookEntity> fetchBestSellerBooks({int pageNumber = 0});
   List<BookEntity> fetchFeaturedBooks();
   List<BookEntity> fetchRelevenceBook();
 }
