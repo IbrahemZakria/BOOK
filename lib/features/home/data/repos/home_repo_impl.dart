@@ -42,14 +42,21 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  fetchFeaturedBooks() async {
+  fetchFeaturedBooks({int pageNumper = 0}) async {
+    print('fetchBestSellerBooks called with pageNumper: $pageNumper');
+
     try {
       List<BookEntity> books;
-      books = homeLocalDataSourcesImpel.fetchFeaturedBooks();
+      books = homeLocalDataSourcesImpel.fetchFeaturedBooks(
+        pageNumber: pageNumper,
+      );
+
       if (books.isNotEmpty) {
         return Right(books);
       }
-      books = await homeRemoteDataSourcesImpel.fetchFeaturedBooks();
+      books = await homeRemoteDataSourcesImpel.fetchFeaturedBooks(
+        pageNumper: pageNumper,
+      );
 
       return Right(books);
     } catch (error) {

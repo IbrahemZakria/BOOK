@@ -19,9 +19,17 @@ class HomeLocalDataSourcesImpel extends HomeLocalDataSources {
   }
 
   @override
-  List<BookEntity> fetchFeaturedBooks() {
+  List<BookEntity> fetchFeaturedBooks({int pageNumber = 0}) {
     var box = Hive.box<BookEntity>(kFeaturedBox);
-    return box.values.toList();
+    int startIndex = pageNumber * 10;
+    int endIndex = startIndex + 10;
+    int listLength = box.values.length;
+    print('fetchFeaturedBooks called with pageNumper: $listLength');
+
+    if (startIndex >= listLength || endIndex > listLength) {
+      return [];
+    }
+    return box.values.toList().sublist(startIndex, endIndex);
   }
 
   @override

@@ -6,7 +6,9 @@ abstract class HomeRepo {
   Future<Either<Failures, List<BookEntity>>> fetchBestSellerBooks({
     int pageNumper = 0,
   });
-  Future<Either<Failures, List<BookEntity>>> fetchFeaturedBooks();
+  Future<Either<Failures, List<BookEntity>>> fetchFeaturedBooks({
+    int pageNumper = 0,
+  });
   Future<Either<Failures, List<BookEntity>>> fetchRelevenceBook({
     required String category,
   });

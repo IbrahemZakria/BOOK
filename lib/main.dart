@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => FeatureBooksCubit(
             FetchFeaturedBooksUseCase(getIt<HomeRepoImpl>()),
-          )..featchFeatureBooks(),
+          )..fetchFeatureBooks(),
         ),
       ],
       child: MaterialApp(

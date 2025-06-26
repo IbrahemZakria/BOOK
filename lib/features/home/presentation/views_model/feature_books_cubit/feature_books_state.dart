@@ -14,6 +14,13 @@ class FeatureBookssuccess extends FeatureBooksState {
   const FeatureBookssuccess(this.books);
 }
 
+class PaginationFeatureBooksLoading extends FeatureBooksState {}
+
+class PaginationFeatureBooksfailure extends FeatureBooksState {
+  final String errorMessage;
+  const PaginationFeatureBooksfailure(this.errorMessage);
+}
+
 class FeatureBooksloading extends FeatureBooksState {}
 
 class FeatureBookserror extends FeatureBooksState {

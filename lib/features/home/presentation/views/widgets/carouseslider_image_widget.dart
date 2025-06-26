@@ -41,7 +41,7 @@ class CarousesliderImageWidget extends StatelessWidget {
           padEnds: true,
           pauseAutoPlayInFiniteScroll: true,
           pauseAutoPlayOnTouch: true,
-          autoPlay: true,
+          autoPlay: false,
           aspectRatio: 2.7 / 4, // Adjust the aspect ratio as needed
           viewportFraction:
               spaceBetweenItem, // Adjust the viewport fraction as needed

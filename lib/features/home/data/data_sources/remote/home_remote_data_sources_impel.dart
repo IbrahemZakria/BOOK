@@ -23,8 +23,10 @@ class HomeRemoteDataSourcesImpel extends HomeRemoteDataSources {
   }
 
   @override
-  Future<List<BookEntity>> fetchFeaturedBooks() async {
-    final response = await _apiServises.getData('volumes?q=programming');
+  Future<List<BookEntity>> fetchFeaturedBooks({int pageNumper = 0}) async {
+    final response = await _apiServises.getData(
+      'volumes?q=programming${pageNumper * 10}',
+    );
     List<BookEntity> books = [];
     addResponseToList(response, books);
     addCashedData(books: books, boxName: kFeaturedBox);
